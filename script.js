@@ -3,8 +3,7 @@ let colums = 1;
 
 
 
-const addRow=document.getElementsByTagName
-
+//Add rows
 
 function addRow() {
     
@@ -12,7 +11,7 @@ function addRow() {
     
     let newRow = document.createElement("tr");
 
-    for(let i = 0; i < amountofColumns; i++) {
+    for(let i = 0; i < rows; i++) {
         let cell = document.createElement("td");
         
         initializeCell(cell)
@@ -22,5 +21,24 @@ function addRow() {
     }
 
     Grid.appendChild(newRow);
+    rows++;
+}
+//Add columns
+function addColumn() {
+    
+    let Grid = document.getElementById("main");
+    
+    let allRows = document.createElement("tr");
+    let x=0;
+
+    for(let i = 0; i < columns; i++) {
+        let cell = document.createElement("td");
+        
+        initializeCell(cell)
+        
+        allRows[x].appendChild(cell);
+        x++;
+    }
+
     rows++;
 }
