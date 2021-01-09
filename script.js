@@ -42,3 +42,11 @@ function addColumn() {
 
     rows++;
 }
+
+function removeRows() {
+    
+    let Grid = document.getElementById("main");
+    
+    Grid.deleteRow(rows-1);
+    rows--;
+}
