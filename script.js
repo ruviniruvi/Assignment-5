@@ -26,7 +26,7 @@ function addRow() {
         // mark the cell as uncolored. when it is colored, remove class
         cell.classList.add("uncolored");
         newRow.appendChild(cell);
-    }
+       
 
     Grid.appendChild(newRow);
     rows++;
@@ -36,10 +36,10 @@ function addColumn() {
     
     let Grid = document.getElementById("main");
     
-    let allRows = document.createElement("tr");
+    let allRows = document.querySelectorAll("tr");
     let x=0;
 
-    for(let i = 0; i < columns; i++) {
+    for(let i = 0; i < rows; i++) {
         let cell = document.createElement("td");
         
         initializeCell(cell)
@@ -48,7 +48,7 @@ function addColumn() {
         x++;
     }
 
-    rows++;
+    columns++;
 }
 
 //3
@@ -112,4 +112,21 @@ function initializeCell(cell) {
     cell.classList.add("uncolored");
 
    
+}
+
+function fillUncolored() {
+   
+    let allCells = document.getElementsByTagName("td");
+    let allCellsList = [...allCells];
+
+    // filter out the cells that are colored
+    const uncolored = allCellsList.filter(cell => {
+        return cell.classList.contains("uncolored");
+    });
+
+    // change the background color of each uncolored cell and remove "uncolored" class
+    uncolored.forEach(cell => {
+        cell.style.backgroundColor = currentColor;
+        cell.classList.remove("uncolored");
+    })
 }
