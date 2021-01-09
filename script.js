@@ -11,7 +11,7 @@ for (let i=0; i < cellList.length; i++) {
 }
 
 
-//Add rows
+//1
 
 function addRow() {
     
@@ -31,7 +31,7 @@ function addRow() {
     Grid.appendChild(newRow);
     rows++;
 }
-//Add columns
+//2
 function addColumn() {
     
     let Grid = document.getElementById("main");
@@ -51,8 +51,18 @@ function addColumn() {
     rows++;
 }
 
+//3
+function removeRow() {
+    //grab the main grid
+    let Grid = document.getElementById("main");
+    
+    Grid.deleteRow(rows-1);
+
+    rows--;
+}
 
 
+//4
 function removeColumns() {
     
     let Grid = document.getElementById("main");
@@ -77,7 +87,29 @@ function removeColumns() {
 }
 
 
-// sets currentColor based on the color selected from dropdown
+//5
 function setColor(color) {
     currentColor = color;
+}
+
+//6
+function changeColor() {
+    this.style.backgroundColor = currentColor;
+
+    // remove class "uncolored" because cell is now colored
+    this.classList.remove("uncolored")
+}
+
+
+
+let currentColor = `${document.getElementById("color").value}`
+
+
+function initializeCell(cell) {
+   
+    cell.addEventListener("click", changeColor);
+    // give cell as class called "uncolored"
+    cell.classList.add("uncolored");
+
+   
 }
