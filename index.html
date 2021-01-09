@@ -17,6 +17,17 @@
     <button onclick="removeRow()">Remove row</button>
     <button onclick="removeColumn()">Remove column</button>
 
+  <form>
+        <p>
+            <label>Color List</label>
+            <select id="color" change="setColor(this.value)"> <!-- 6 -->
+                <option value="#87bac9">blue</option>
+                <option value="#db5881">pink</option>
+                <option value="#d4e094">green</option>
+                <option value="#f7e277">yellow</option>
+            </select>
+        </p>
+    </form>
 
     <table id="main">
         <tr>
