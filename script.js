@@ -50,3 +50,11 @@ function removeRows() {
     Grid.deleteRow(rows-1);
     rows--;
 }
+
+function removeColumns() {
+    
+    let Grid = document.getElementById("main");
+    
+    Grid.deleteColumns(columns-1);
+    columns--;
+}
