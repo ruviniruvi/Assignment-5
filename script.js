@@ -1,6 +1,14 @@
 let rows = 2;
 let columns = 1;
 
+let cells = document.getElementsByTagName("td");
+let cellList = [...cells];
+
+
+for (let i=0; i < cellList.length; i++) {
+    const cell = cellList[i];
+    initializeCell(cell)
+}
 
 
 //Add rows
@@ -43,18 +51,33 @@ function addColumn() {
     rows++;
 }
 
-function removeRows() {
-    
-    let Grid = document.getElementById("main");
-    
-    Grid.deleteRow(rows-1);
-    rows--;
-}
+
 
 function removeColumns() {
     
     let Grid = document.getElementById("main");
     
-    Grid.deleteColumns(columns-1);
+    let allRows = document.querySelectorAll("tr");
+
+    let counter = 0;
+
+
+
+    for(let i = 0; i < rows; i++) {
+    
+        allRows[counter].removeChild(allRows[counter].lastChild);
+
+        counter++;
+       
+    }
+
     columns--;
+
+
+}
+
+
+// sets currentColor based on the color selected from dropdown
+function setColor(color) {
+    currentColor = color;
 }
