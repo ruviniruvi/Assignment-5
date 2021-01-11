@@ -1,84 +1,87 @@
-let rows = 2;
+let Grid = document.getElementById("grid");
 let columns = 1;
+let rows = 1;
 
-let cells = document.getElementsByTagName("td");
-let cellList = [...cells];
+let getColor = false;
+
+const addRow = document.getElementById("addRow");
+const addColumn = document.getElementById("addColumn");
 
 
-for (let i=0; i < cellList.length; i++) {
-    const cell = cellList[i];
-    initializeCell(cell)
-}
+const removeRow = document.getElementById("removeRow");
+const removeColumn = document.getElementById("removeColumn");
+
+const fillUncolored = document.getElementById("fillUncolored");
+const fillAllCurrent = document.getElementById("fillAllCurrent");
+const clearAllCells = document.getElementById("clearAllCells");
 
 
 //1
 
-function addRow() {
+addRow.addEventListener("click", function() {
     
-    let Grid = document.getElementById("main");
+   
     
     let newRow = document.createElement("tr");
 
-    for(let i = 0; i < rows; i++) {
-        let cell = document.createElement("td");
+    for(let i = 0; i < columns; i++) {
+        let addCell = document.createElement("td");
         
-        initializeCell(cell)
-        // mark the cell as uncolored. when it is colored, remove class
-        cell.classList.add("uncolored");
-        newRow.appendChild(cell);
+        initializeCell(addCell);
+        
+        //cell.classList.add("uncolored");
+        newRow.appendChild(addCell);
        
     }
     rows++;
 
     Grid.appendChild(newRow);
-    //rows++;
-}
+ 
+});
 
 //2
-function addColumn() {
+addColumn.addEventListener("click", function() {
     
-    let Grid = document.getElementById("main");
+   
     
     let allRows = document.querySelectorAll("tr");
     let x=0;
 
-    for(let i = 0; i < rows; i++) {
-        let cell = document.createElement("td");
+    for(let i = 0; i < allRows.length; i++) {
+        let addCell = document.createElement("td");
         
-        initializeCell(cell)
+        initializeCell(addCell)
         
-        allRows[x].appendChild(cell);
-        x++;
+        allRows[i].appendChild(addCell);
+       
     }
 
     columns++;
-}
+});
 
 //3
-function removeRow() {
-    //grab the main grid
-    let Grid = document.getElementById("main");
+removeRow.addEventListener("click", function() {
     
-    Grid.deleteRow(rows-1);
+    Grid.lastElementChild.remove()
+   
 
     rows--;
-}
+});
 
 
 //4
-function removeColumns() {
+removeColumn.addEventListener("click", function() {
     
-    let Grid = document.getElementById("main");
     
     let allRows = document.querySelectorAll("tr");
 
-    let counter = 0;
+  //  let counter = 0;
 
 
 
-    for(let i = 0; i < rows; i++) {
+    for(let i = 0; i < allRows.length; i++) {
     
-        allRows[counter].removeChild(allRows[counter].lastChild);
+        allRows[i].deleteCell(columns-1);
 
         counter++;
        
@@ -87,14 +90,16 @@ function removeColumns() {
     columns--;
 
 
-}
+})
 
 
+
+
+let currentColor = `${document.getElementById("color").value}`
 //5
-function setColor(color) {
+/*function setColor(color) {
     currentColor = color;
-}
-
+}*/
 //6
 function changeColor() {
     this.style.backgroundColor = currentColor;
@@ -103,41 +108,37 @@ function changeColor() {
     this.classList.remove("uncolored")
 }
 
-
-
-let currentColor = `${document.getElementById("color").value}`
-
-
-function initializeCell(cell) {
-   
-    cell.addEventListener("click", changeColor);
-    // give cell as class called "uncolored"
-    cell.classList.add("uncolored");
-
-   
+//5
+function setColor(color) {
+    currentColor = color;
 }
+
+
+    function applyColor(color) {
+        currentColor = color;}
+
 //7
-function fillUncolored() {
+fillUncolored.addEventListener("click", function() {
    
     let allCells = document.getElementsByTagName("td");
     let allCellsList = [...allCells];
 
-    // filter out the cells that are colored
+   
     const uncolored = allCellsList.filter(cell => {
         return cell.classList.contains("uncolored");
     });
 
-    // change the background color of each uncolored cell and remove "uncolored" class
-    uncolored.forEach(cell => {
+    
+    allCellsList.forEach(cell => {
         cell.style.backgroundColor = currentColor;
         cell.classList.remove("uncolored");
     })
-}
+});
 
 
 //8
 
-function fillAllCurrent() {
+fillAllCurrent.addEventListener("click", function(){
     
     let allCells = document.getElementsByTagName("td");
     let allCellsList = [...cells];
@@ -147,16 +148,48 @@ function fillAllCurrent() {
         cell.style.backgroundColor = currentColor;
         cell.classList.remove("uncolored");
     })
-}
+});
 //9
-function clearAllCells() {
+ clearAllCells.addEventListener("click", function(){
     
     let allCells = document.getElementsByTagName("td");
     let allCellsList = [...cells];
 
-    // remove "uncolored" class, change background color to red
+    
     allCellsList.forEach(cell => {
         cell.style.backgroundColor = 'white';
         cell.classList.add("uncolored");
     })
+})
+
+function initializeCell(cell) {
+    // change color on click
+    cell.addEventListener("click", applyColor);
+    // give cell as class called "uncolored"
+    cell.classList.add("grid-item");
+    cell.classList.add("uncolored");
+    
+
+
+     //10:
+      
+    
+    cell.addEventListener("mousedown", e => {
+        getColor = true
+    });
+
+   
+    cell.addEventListener("mousemove", e => {
+        if ( getColor) {
+            cell.style.backgroundColor = currentColor;
+            cell.classList.remove("uncolored");
+        }
+    });
+
+    
+    cell.addEventListener("mouseup", e => {
+        if ( getColor) {
+            getColor = false;
+        }
+    });
 }

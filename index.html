@@ -10,33 +10,27 @@
 
 </head>
 <body>
+    <table calss="container" id="grid"> </table>
     
-    
-    <button onclick="addRow()">Add Row</button>
-    <button onclick="addColumn()">Add Column</button>
-    <button onclick="removeRow()">Remove row</button>
-    <button onclick="removeColumn()">Remove column</button>
+    <button id="addRow">Add Row</button>
+    <button id="addColumn">Add Column</button>
+    <button id="removeRow">Remove row</button>
+    <button id="removeColumn">Remove column</button>
 
-  <form>
+  
         <p>
-            <label>Color List</label>
-            <select id="color" change="setColor(this.value)"> 
+            <label>Select colors from here :</label>
+            <select id="color" onnchange="setColor(this.value)"> 
                 <option value="#87bac9">blue</option>
                 <option value="#db5881">pink</option>
                 <option value="#d4e094">green</option>
                 <option value="#f7e277">yellow</option>
             </select>
         </p>
-    </form>
-    <button onclick="fillUncolored()">Fill all uncolor cells.</button>
-    <button onclick="fillAllCurrent()">Fill All cells</button>
-    <button onclick="clearAllCells()">Clear All cells</button>
-    <table id="main">
-        <tr>
-            <td></td>
-            <td></td>
-        </tr>
-    </table>
+    
+    <button id="fillUncolored()">Fill all uncolor cells.</button>
+    <button id="fillAllCurrent()">Fill All cells</button>
+    <button id="clearAllCells()">Clear All cells</button>
     <script src="script.js"></script>
 
 </body>
