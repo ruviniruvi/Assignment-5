@@ -27,10 +27,13 @@ function addRow() {
         cell.classList.add("uncolored");
         newRow.appendChild(cell);
        
+    }
+    rows++;
 
     Grid.appendChild(newRow);
-    rows++;
+    //rows++;
 }
+
 //2
 function addColumn() {
     
@@ -113,7 +116,7 @@ function initializeCell(cell) {
 
    
 }
-
+//7
 function fillUncolored() {
    
     let allCells = document.getElementsByTagName("td");
@@ -126,6 +129,21 @@ function fillUncolored() {
 
     // change the background color of each uncolored cell and remove "uncolored" class
     uncolored.forEach(cell => {
+        cell.style.backgroundColor = currentColor;
+        cell.classList.remove("uncolored");
+    })
+}
+
+
+//8
+
+function fillAllCurrent() {
+    
+    let allCells = document.getElementsByTagName("td");
+    let allCellsList = [...cells];
+
+    
+    allCellsList.forEach(cell => {
         cell.style.backgroundColor = currentColor;
         cell.classList.remove("uncolored");
     })
