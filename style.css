@@ -1,5 +1,22 @@
-td {
-    height: 50px;
-    width: 100px;
-    background-color: aquamarine;
+.container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 10px;
+  background-color: #2196F3;
+  padding: 100px;
+  }
+  .grid-item {
+    
+  background-color: powderblue;
+  border: 1px solid rgb(15, 15, 15);
+  padding: 10px;
+  font-size: 20px;
+  text-align: center;
+  }
+
+  td{
+  height : 50px;
+  width: 50px;
+  background-color: black;
+  border-radius: 8px;
 }
