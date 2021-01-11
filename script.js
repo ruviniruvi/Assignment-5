@@ -148,3 +148,15 @@ function fillAllCurrent() {
         cell.classList.remove("uncolored");
     })
 }
+//9
+function clearAllCells() {
+    
+    let allCells = document.getElementsByTagName("td");
+    let allCellsList = [...cells];
+
+    // remove "uncolored" class, change background color to red
+    allCellsList.forEach(cell => {
+        cell.style.backgroundColor = 'white';
+        cell.classList.add("uncolored");
+    })
+}
