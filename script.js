@@ -1,4 +1,5 @@
-let Grid = document.getElementById("grid");
+const Grid = document.getElementById("grid");
+
 let columns = 1;
 let rows = 1;
 
@@ -16,20 +17,18 @@ const fillAllCurrent = document.getElementById("fillAllCurrent");
 const clearAllCells = document.getElementById("clearAllCells");
 
 
-//1
+//feature 01
 
 addRow.addEventListener("click", function() {
     
    
-    
     let newRow = document.createElement("tr");
 
     for(let i = 0; i < columns; i++) {
         let addCell = document.createElement("td");
         
         initializeCell(addCell);
-        
-        //cell.classList.add("uncolored");
+       
         newRow.appendChild(addCell);
        
     }
@@ -39,13 +38,13 @@ addRow.addEventListener("click", function() {
  
 });
 
-//2
+// Feature 02
 addColumn.addEventListener("click", function() {
     
    
     
     let allRows = document.querySelectorAll("tr");
-    let x=0;
+    //let x=0;
 
     for(let i = 0; i < allRows.length; i++) {
         let addCell = document.createElement("td");
@@ -59,7 +58,7 @@ addColumn.addEventListener("click", function() {
     columns++;
 });
 
-//3
+// Feature 03
 removeRow.addEventListener("click", function() {
     
     Grid.lastElementChild.remove()
@@ -69,7 +68,7 @@ removeRow.addEventListener("click", function() {
 });
 
 
-//4
+//Feature 04
 removeColumn.addEventListener("click", function() {
     
     
@@ -77,13 +76,11 @@ removeColumn.addEventListener("click", function() {
 
   //  let counter = 0;
 
-
-
     for(let i = 0; i < allRows.length; i++) {
     
         allRows[i].deleteCell(columns-1);
 
-        counter++;
+       // counter++;
        
     }
 
@@ -93,14 +90,14 @@ removeColumn.addEventListener("click", function() {
 })
 
 
-
+// Feature 05
 
 let currentColor = `${document.getElementById("color").value}`
-//5
-/*function setColor(color) {
+
+function setColor(color) {
     currentColor = color;
-}*/
-//6
+}
+// Feature 06
 function changeColor() {
     this.style.backgroundColor = currentColor;
 
@@ -108,16 +105,13 @@ function changeColor() {
     this.classList.remove("uncolored")
 }
 
-//5
-function setColor(color) {
-    currentColor = color;
-}
-
 
     function applyColor(color) {
         currentColor = color;}
 
-//7
+// Feature 07
+
+
 fillUncolored.addEventListener("click", function() {
    
     let allCells = document.getElementsByTagName("td");
@@ -136,12 +130,12 @@ fillUncolored.addEventListener("click", function() {
 });
 
 
-//8
+// Feature 08
 
 fillAllCurrent.addEventListener("click", function(){
     
     let allCells = document.getElementsByTagName("td");
-    let allCellsList = [...cells];
+    let allCellsList = [...allCells];
 
     
     allCellsList.forEach(cell => {
@@ -149,29 +143,32 @@ fillAllCurrent.addEventListener("click", function(){
         cell.classList.remove("uncolored");
     })
 });
-//9
+
+//Feature 09
+
+
  clearAllCells.addEventListener("click", function(){
     
     let allCells = document.getElementsByTagName("td");
-    let allCellsList = [...cells];
+    let allCellsList = [... allCells];
 
     
     allCellsList.forEach(cell => {
         cell.style.backgroundColor = 'white';
-        cell.classList.add("uncolored");
+        
     })
 })
 
 function initializeCell(cell) {
-    // change color on click
-    cell.addEventListener("click", applyColor);
-    // give cell as class called "uncolored"
+    
+    cell.addEventListener("click", changeColor);
+    
     cell.classList.add("grid-item");
     cell.classList.add("uncolored");
     
 
 
-     //10:
+     // Feature 10
       
     
     cell.addEventListener("mousedown", e => {
@@ -191,5 +188,5 @@ function initializeCell(cell) {
         if ( getColor) {
             getColor = false;
         }
-    });
+    })
 }
